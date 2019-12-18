@@ -2341,4 +2341,27 @@ where
             f(&*prev, &mut *curr)
         });
     }
+
+    /// Roll array elements along a given axis.
+    /// 
+    /// Elements that roll beyond the last position are re-introduced at the first.
+    /// 
+    /// # Example
+    /// ```
+    /// use ndarray::{array, Array, Axis};
+    ///
+    /// let mut x = Array::range(0., 10., 1.);
+    /// x.roll_inplace(Axis(0), 2);
+    /// assert_eq!(
+    ///     x,
+    ///     array![2., 3., 4., 5., 6., 7., 8., 9., 0., 1.]
+    /// );
+    /// ```
+    pub fn roll_inplace(&mut self, axis: Axis, num: isize)
+    where
+        S: DataMut
+    {
+        let (mut a, mut b) = self.multi_slice_mut((s![0,..],s![1,..]));
+
+    }
 }

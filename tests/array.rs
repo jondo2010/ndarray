@@ -1944,6 +1944,20 @@ fn test_accumulate_axis_inplace_nonstandard_layout() {
                             [12, 23, 33]]));
 }
 
+#[rustfmt::skip] // Allow block array formatting
+#[test]
+fn test_roll_inplace() {
+    let mut a = arr2(&[[1, 2, 3],
+                       [4, 5, 6],
+                       [7, 8, 9],
+                       [10, 11, 12]]);
+    a.roll_inplace(Axis(0), 1);
+    assert_eq!(a, aview2(&[[3, 1, 2],
+                           [6, 4, 5],
+                           [9, 7, 8],
+                           [12, 10, 11]]));
+}
+
 #[test]
 fn test_to_vec() {
     let mut a = arr2(&[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]);
